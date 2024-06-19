@@ -24,14 +24,13 @@ public class CharaController : MonoBehaviour
             _characterController.Move(move * _speed * Time.deltaTime);
 
             _anim.SetBool("isMoving", true);
-            
-            if(move.y > 0f) //jalan ke kanan
+
+            if(move.x > 0f) //jalan ke kanan
             {
                 _anim.SetBool("isRight", true);
             }
-            else if(move.y < 0f) //jalan ke kiri
+            else if(move.x < 0f) //jalan ke kiri
             {
-                _anim.SetBool("isMoving", true);
                 _anim.SetBool("isRight", false);
             }
         }
