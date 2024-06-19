@@ -5,7 +5,10 @@ public class CharaController : MonoBehaviour
 {
     private CharacterController _characterController;
     private Animator _anim;
+
     [SerializeField] private float _speed;
+    [SerializeField] private float _speedShoot;
+    [SerializeField] private GameObject _pizzaPrefab;
 
     private void Start() 
     {
@@ -38,6 +41,20 @@ public class CharaController : MonoBehaviour
         {
             _anim.SetBool("isMoving", false);
         }
-        
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            TembakPizza();
+        }
+    }
+
+    private void TembakPizza()
+    {
+        GameObject pizza = Instantiate(_pizzaPrefab, transform.position, transform.rotation);
+        Rigidbody rb = pizza.GetComponent<Rigidbody>();
+
+        rb.velocity = transform.forward * _speedShoot;
+
+        Destroy(pizza, 3f);
     }
 }
