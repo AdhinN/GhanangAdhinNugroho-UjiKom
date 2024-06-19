@@ -44,6 +44,7 @@ public class CharaController : MonoBehaviour
 
         if(Input.GetButtonDown("Fire1"))
         {
+            _anim.SetTrigger("isShoot");
             TembakPizza();
         }
     }
