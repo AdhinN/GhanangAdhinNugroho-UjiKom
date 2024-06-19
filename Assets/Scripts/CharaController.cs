@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharaController : MonoBehaviour
@@ -21,9 +22,20 @@ public class CharaController : MonoBehaviour
         if(move != Vector3.zero)
         {
             _characterController.Move(move * _speed * Time.deltaTime);
+
             _anim.SetBool("isMoving", true);
+            
+            if(move.y > 0f) //jalan ke kanan
+            {
+                _anim.SetBool("isRight", true);
+            }
+            else if(move.y < 0f) //jalan ke kiri
+            {
+                _anim.SetBool("isMoving", true);
+                _anim.SetBool("isRight", false);
+            }
         }
-        else
+        else //idle
         {
             _anim.SetBool("isMoving", false);
         }
