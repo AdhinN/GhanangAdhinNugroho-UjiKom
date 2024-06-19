@@ -9,6 +9,7 @@ public class CharaController : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _speedShoot;
     [SerializeField] private GameObject _pizzaPrefab;
+    [SerializeField] private Transform _spawnPizza;
 
     private void Start() 
     {
@@ -51,7 +52,7 @@ public class CharaController : MonoBehaviour
 
     private void TembakPizza()
     {
-        GameObject pizza = Instantiate(_pizzaPrefab, transform.position, transform.rotation);
+        GameObject pizza = Instantiate(_pizzaPrefab, _spawnPizza.transform.position, transform.rotation);
         Rigidbody rb = pizza.GetComponent<Rigidbody>();
 
         rb.velocity = transform.forward * _speedShoot;
