@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class Deer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int _hunger = 200;
+    private int _score = 1;
+
+    public void TakeDamage(int damage)
     {
-        
+        _hunger -= damage;
+        if(_hunger <= 0)
+        {
+            Die();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Die()
     {
-        
     }
 }

@@ -1,18 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnAnimals : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject[] _animals;   
+    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private float _spawnInterval;
+
+    private void Start() 
     {
-        
+        StartCoroutine(StartSpawnAnimals());    
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator StartSpawnAnimals()
     {
-        
+        while(true)
+        {
+            yield return new WaitForSeconds(_spawnInterval);
+
+            int animalIndex = Random.Range(0, _animals.Length);
+            GameObject animal = _animals[animalIndex];
+
+            int spawnIndex = Random.Range(0, _spawnPoints.Length);
+            Transform spawnPoint = _spawnPoints[spawnIndex];
+
+            Instantiate(animal, spawnPoint.position, animal.transform.rotation);
+        }
     }
 }
